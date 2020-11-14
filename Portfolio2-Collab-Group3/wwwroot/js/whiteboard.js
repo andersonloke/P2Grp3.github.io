@@ -6,16 +6,13 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 document.getElementById("sendButton").disabled = true;
 
 var count = 0;
-var cards = [];
-// Create a card to display user's content
+//Create a card to display user's content
 connection.on("ReceiveMessage", function (user, message) {
     var id = "draggable" + count;
     count++;
-    cards.push(id);
     var card = document.createElement("div");
-    card.className = "card col-3"; //draggable
+    card.className = "card col-3";
     card.id = id;
-    //card.style.width = "18rem";
     var cardBody = document.createElement("div");
     cardBody.className = "card-body";
     var cardTitle = document.createElement("h4");
@@ -29,14 +26,27 @@ connection.on("ReceiveMessage", function (user, message) {
     document.getElementById("messagesList").appendChild(card);
     dragElement(document.getElementById(card.id));
 });
+//Update position of moved div
+connection.on("ReceiveNewPosition", function (divID, pos1, pos2) {
+    //set the element's new position:
+    console.log(divID, pos1, pos2);
+    var elmnt = document.getElementById(divID);
+    elmnt.style.top = (pos2) + "px";
+    elmnt.style.left = (pos1) + "px";
+});
 
 //Connection is established
 connection.start().then(function () {
-    document.getElementById("sendButton").disabled = false;
+    document.getElementById("sendButton").disabled = false; //enable the sendButton
+    connection.invoke("AddToGroup", "testingGroup").catch(function (err) { //add to a common group (unique code for the whiteboard)
+        return console.error(err.toString());
+    });
 }).catch(function (err) {
     return console.error(err.toString());
 });
 
+
+//SendButton is clicked
 document.getElementById("sendButton").addEventListener("click", function (event) {
     modal.style.display = "none";
     var user = document.getElementById("userInput").value;
@@ -45,12 +55,6 @@ document.getElementById("sendButton").addEventListener("click", function (event)
         return console.error(err.toString());
     });
     event.preventDefault();
-    //var i;
-    //console.log(cards);
-    //for (i = 0; i < cards.length; i++) {
-    //    if(cards[i] !== "")
-    //        dragElement(document.getElementById(cards[i]));
-    //}
 });
 
 // Get the modal
@@ -82,49 +86,44 @@ window.onclick = function (event) {
     }
 }
 
+//Function for draggable div
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    elmnt.style.position = "absolute" //important for it to be dragged accurately
+    elmnt.className += " draggable" //important for it to be dragged accurately
     elmnt.onmousedown = dragMouseDown;
 
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
-        // get the mouse cursor position at startup:
+        //get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
+        //call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
     }
 
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
-        // calculate the new cursor position:
+        //calculate the new cursor position:
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // set the element's new position:
+        //set the element's new position:
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     }
 
     function closeDragElement() {
-        // stop moving when mouse button is released:
+        //stop moving when mouse button is released:
         document.onmouseup = null;
         document.onmousemove = null;
+
+        //Send the position of the moved div to other users in the same group
+        connection.invoke("SendMessageToGroup", elmnt.id, elmnt.offsetLeft - pos1, elmnt.offsetTop - pos2).catch(function (err) {
+            return console.error(err.toString());
+        });
     }
 }
-
-//let selectedCard;
-//HTMLDivElement.onclick = function (event) {
-//    let target = event.target;
-
-//    if (target.tagName != "card")
-//        return;
-
-//    console.log(target);
-//    dragElement(target);
-//};
