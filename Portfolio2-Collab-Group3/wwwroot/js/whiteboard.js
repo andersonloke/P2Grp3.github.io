@@ -1,9 +1,24 @@
 ﻿"use strict";
-
+//Global variables
+var meetingCode;
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 
 //Disable send button until connection is established
 document.getElementById("sendButton").disabled = true;
+
+//After page load, display middle pop-up form
+$(document).ready(function () {
+    document.getElementById('ac-wrapper').style.display = "block";
+});
+
+//Submit button hides/clears away pop-up form
+document.getElementById("formBtn").addEventListener("click", function (event) {
+    meetingCode = document.getElementById("meetingCode").value;
+    connection.invoke("AddToGroup", meetingCode).catch(function (err) { //add to a common group (unique code for the whiteboard)
+        return console.error(err.toString());
+    });
+    document.getElementById('ac-wrapper').style.display = "none";
+});
 
 var count = 0;
 //Create a card to display user's content
@@ -26,6 +41,7 @@ connection.on("ReceiveMessage", function (user, message) {
     document.getElementById("messagesList").appendChild(card);
     dragElement(document.getElementById(card.id));
 });
+
 //Update position of moved div
 connection.on("ReceiveNewPosition", function (divID, pos1, pos2) {
     //set the element's new position:
@@ -38,9 +54,6 @@ connection.on("ReceiveNewPosition", function (divID, pos1, pos2) {
 //Connection is established
 connection.start().then(function () {
     document.getElementById("sendButton").disabled = false; //enable the sendButton
-    connection.invoke("AddToGroup", "testingGroup").catch(function (err) { //add to a common group (unique code for the whiteboard)
-        return console.error(err.toString());
-    });
 }).catch(function (err) {
     return console.error(err.toString());
 });
@@ -51,7 +64,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     modal.style.display = "none";
     var user = document.getElementById("userInput").value;
     var message = document.getElementById("messageInput").value;
-    connection.invoke("SendMessage", user, message).catch(function (err) {
+    connection.invoke("SendMessage",meetingCode, user, message).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
@@ -122,7 +135,7 @@ function dragElement(elmnt) {
         document.onmousemove = null;
 
         //Send the position of the moved div to other users in the same group
-        connection.invoke("SendMessageToGroup", elmnt.id, elmnt.offsetLeft - pos1, elmnt.offsetTop - pos2).catch(function (err) {
+        connection.invoke("SendPosition",meetingCode, elmnt.id, elmnt.offsetLeft - pos1, elmnt.offsetTop - pos2).catch(function (err) {
             return console.error(err.toString());
         });
     }

@@ -8,14 +8,19 @@ namespace Portfolio2_Collab_Group3.Hubs
 {
     public class Whiteboard:Hub
     {
-        public async Task SendMessage(string user, string message)
+        //public async Task SendMessage(string user, string message)
+        //{
+        //    await Clients.All.SendAsync("ReceiveMessage", user, message);
+        //}
+
+        public async Task SendPosition(string meetingCode,string div, int pos1, int pos2)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message);
+            await Clients.Group(meetingCode).SendAsync("ReceiveNewPosition", div, pos1, pos2);
         }
 
-        public async Task SendMessageToGroup(string div, int pos1, int pos2)
+        public async Task SendMessage(string meetingCode, string user, string message)
         {
-            await Clients.Group("testingGroup").SendAsync("ReceiveNewPosition", div, pos1, pos2);
+            await Clients.Group(meetingCode).SendAsync("ReceiveMessage", user, message);
         }
 
         public async Task AddToGroup(string groupName)
