@@ -53,6 +53,11 @@ namespace Portfolio2_Collab_Group3.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
