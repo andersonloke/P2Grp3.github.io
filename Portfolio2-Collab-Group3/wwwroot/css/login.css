@@ -1,30 +1,10 @@
 ﻿body {
-    /* Desktop - 1 */
-    position: relative;
-    width: 1440px;
-    height: 1024px;
-    background: #1155CC;
-    /* yellow */
-    position: absolute;
-    width: 922px;
-    height: 883px;
-    left: 883px;
-    top: -25px;
-    background: #FFD966;
-    border: 1px solid #FFD966;
-    box-sizing: border-box;
-    transform: rotate(90deg);
-    /* pink */
-    position: absolute;
-    width: 413px;
-    height: 577px;
-    left: 863px;
-    top: 1024px;
-    background: #FFA1BD;
-    border: 1px solid #FFD966;
-    box-sizing: border-box;
-    transform: rotate(-90deg);
-    /* foundation */
+    background: url("../images/yellow.svg"), url("../images/pink.svg");
+    background-color: #1155CC;
+    background-position: left top, right bottom;
+    background-repeat: no-repeat, no-repeat;
+    
+    /* foundation
     position: absolute;
     width: 230px;
     height: 81px;
@@ -36,7 +16,7 @@
     font-size: 36px;
     line-height: 44px;
     color: #000000;
-    /* making learning fun. */
+    /* making learning fun.
     position: absolute;
     width: 704px;
     height: 716px;
@@ -48,26 +28,7 @@
     font-size: 160px;
     line-height: 194px;
     color: #000000;
-
-    /* emailtxt */
-    position: absolute;
-    width: 443px;
-    height: 71px;
-    left: 843px;
-    top: 250px;
-    background: #EAEAEA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    /* passwordtxt */
-    position: absolute;
-    width: 443px;
-    height: 71px;
-    left: 843px;
-    top: 366px;
-    background: #EAEAEA;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px;
-    /* login button */
+    /* login button
     position: absolute;
     width: 443px;
     height: 83px;
@@ -76,7 +37,7 @@
     background: #000000;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
-    /* signup button */
+    /* signup button
     position: absolute;
     width: 443px;
     height: 83px;
@@ -87,7 +48,7 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
-    /* login */
+    /* login
     position: absolute;
     width: 110px;
     height: 61px;
@@ -99,7 +60,7 @@
     font-size: 48px;
     line-height: 58px;
     color: #FFFFFF;
-    /* sign up */
+    /* sign up
     position: absolute;
     width: 159px;
     height: 61px;
@@ -111,7 +72,7 @@
     font-size: 48px;
     line-height: 58px;
     color: #000000;
-    /* enter email */
+    /* enter email
     position: absolute;
     width: 301px;
     height: 61px;
@@ -123,7 +84,7 @@
     font-size: 36px;
     line-height: 44px;
     color: #646464;
-    /* forgot your password? click here */
+    /* forgot your password? click here
     position: absolute;
     width: 527px;
     height: 100px;
@@ -136,7 +97,7 @@
     line-height: 44px;
     text-align: center;
     color: #000000;
-    /* enter password */
+    /* enter password
     position: absolute;
     width: 301px;
     height: 61px;
@@ -147,15 +108,129 @@
     font-weight: bold;
     font-size: 36px;
     line-height: 44px;
-    color: #646464;
+    color: #646464;*/
 }
-fieldset {
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/*Heading*/
+.hero-container {
+    display: flex;
+    max-width: 300px;
+    margin: 0 auto;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/*Header Font*/
+.hero-container h1 {
+    font-family: 'Cabin', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 96px;
+}
+
+.main-card {
     /* whiterectangle */
-    position: absolute;
-    width: 561px;
-    height: 706px;
+    max-width: 500px;
+    /*height: 706px;
     left: 784px;
-    top: 159px;
+    top: 159px;*/
     background: #FFFFFF;
-    border-radius: 71px;
+    border-radius: 15px;
+    box-shadow: rgba(37, 37, 37, 0.16) 0px 0px 2px 0px, rgba(37, 37, 37, 0.12) 0px 1px 4px 0px;
+    padding: 20px;
+    margin-top: 20px;
+    position: center;
 }
+
+fieldset{
+    padding: 20px
+}
+
+#email {
+    height: 50px;
+    background-color: #EAEAEA;
+    border-radius: 15px;
+    margin-bottom: 3px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#password {
+    height: 50px;
+    background-color: #EAEAEA;
+    margin-bottom: 3px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 90%;
+    border-radius: 15px 0px 0px 15px;
+}
+
+#password:focus {
+    border-radius: .25rem;
+}
+
+#passwordbutton {
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 0;
+    float: right;
+    width: 10%;
+    outline: 0;
+    border-radius: 0 15px 15px 0;
+    text-align: center;
+    z-index: 99;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#eye {
+    font-size: 25px;
+    color: #495057;
+}
+
+.btn{
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+}
+
+#login{
+    color: white;
+    background-color: black;
+}
+
+#login:hover{
+    background-color: darkslategrey;
+}
+
+#signup{
+    color:black;
+    border: 3px solid black;
+}
+
+#signup:hover {
+    color: white;
+    background-color: black;
+}
+
+fieldset {
+    font-family: 'Cabin',sans-serif;
+    font-style: normal;
+    font-weight: bold;
+}
+
+form {
+    font-family: 'Cabin',sans-serif;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+
+
