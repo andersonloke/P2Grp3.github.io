@@ -58,6 +58,11 @@ namespace Portfolio2_Collab_Group3.Controllers
             return View();
         }
 
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
