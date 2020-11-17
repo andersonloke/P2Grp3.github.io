@@ -28,7 +28,7 @@
         var p = document.getElementById("");
         var c = document.getElementById("");
         if (p == c) {
-
+            location.href = "SignUp.cshtml";
         }
         else {
 
@@ -70,7 +70,7 @@
                 <div class="form-space"></div>
 
                 <div class="form-group">
-                    <input type="submit" value="Sign Up" id="login" class="btn" />
+                    <input type="submit" value="Sign Up" id="login" class="btn"  asp-action="Index" asp-controller="Home"/>
                 </div>
 
                 <div class="form-group">

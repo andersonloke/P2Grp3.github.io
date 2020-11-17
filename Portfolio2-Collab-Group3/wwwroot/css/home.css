@@ -1,0 +1,407 @@
+﻿body {
+    font-family: 'Cabin', sans-serif;
+
+    /*background: url('../images/Vector 1.svg'), url('../images/Vector 2.svg'), url('../images/Vector 3.svg'), url('../images/Vector 4.svg'), url('../images/Vector 5.svg'), url('../images/Vector 6.svg');
+    background-position: top right, top right, bottom right, bottom right, center left, center left;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;*/
+}
+
+header {
+
+}
+
+.wrapper{
+    width: 100%;
+}
+
+.header-container {
+    font-style: normal;
+    text-align: center;
+    padding: 50px;
+    background: #1155CC url('../images/Group 1.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
+.header-container h1 {
+    font-size: 72px;
+    font-weight: bold;
+}
+
+.header-container p {
+    font-size: 48px;
+}
+
+.about-us{
+    margin-top: 20px;
+}
+.aspects {
+    display: flex;
+    width: 100%;
+    font-style: normal;
+    text-align: center;
+    padding: 50px;
+    background: #1155CC url('../images/Group 1.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    padding: 20px
+}
+.forum {
+    max-width: 600px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: rgba(37, 37, 37, 0.16) 0px 0px 2px 0px, rgba(37, 37, 37, 0.12) 0px 1px 4px 0px;
+    padding: 20px;
+    margin-top: 20px;
+    float: left;
+    flex: 1;
+    padding: 16px;
+}
+
+.whiteboard {
+    max-width: 600px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: rgba(37, 37, 37, 0.16) 0px 0px 2px 0px, rgba(37, 37, 37, 0.12) 0px 1px 4px 0px;
+    padding: 20px;
+    margin-top: 20px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex: 1;
+    padding: 16px;
+}
+
+.contact-us {
+    max-width: 600px;
+    background: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: rgba(37, 37, 37, 0.16) 0px 0px 2px 0px, rgba(37, 37, 37, 0.12) 0px 1px 4px 0px;
+    padding: 20px;
+    margin-top: 20px;
+    float: right;
+    flex: 1;
+    padding: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+    .forum{
+        display: block;
+        width: 100%;
+    }
+    .whiteboard {
+        display: block;
+        width: 100%;
+    }
+    .contact-us {
+        display: block;
+        width: 100%;
+    }
+}
+
+
+
+
+/* Desktop - 1 */
+
+position: relative;
+width: 1440px;
+height: 2456px;
+
+background: #1155CC;
+
+
+/* Vector 1 */
+
+position: absolute;
+width: 1539.31px;
+height: 1533.3px;
+left: -25.31px;
+top: -221px;
+
+background: #FFD966;
+mix-blend-mode: normal;
+border: 1px solid #DE8C8C;
+
+
+/* Vector 2 */
+
+position: absolute;
+width: 1600.7px;
+height: 1400.7px;
+left: 137.99px;
+top: -272.14px;
+
+background: #EA658D;
+
+
+/* Vector 3 */
+
+position: absolute;
+width: 1539.31px;
+height: 1685.75px;
+left: 209px;
+top: 1259px;
+
+background: #EA658D;
+border: 1px solid #DE8C8C;
+
+
+/* Vector 4 */
+
+position: absolute;
+width: 1306.39px;
+height: 1439.33px;
+left: 357px;
+top: 1322px;
+
+background: #FFD966;
+border: 1px solid #DE8C8C;
+
+
+/* home */
+
+position: absolute;
+width: 100px;
+height: 46px;
+left: 211px;
+top: 25px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+color: #FFFFFF;
+
+
+
+/* about */
+
+position: absolute;
+width: 100px;
+height: 46px;
+left: 359px;
+top: 25px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+color: #EBFFF5;
+
+
+
+/* whiteboard */
+
+position: absolute;
+width: 194px;
+height: 46px;
+left: 505px;
+top: 25px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+color: #E1FFF1;
+
+
+
+/* forum */
+
+position: absolute;
+width: 100px;
+height: 46px;
+left: 742px;
+top: 25px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+color: #FFFFFF;
+
+
+
+/* collab */
+
+position: absolute;
+width: 176px;
+height: 46px;
+left: 35px;
+top: 14px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: bold;
+font-size: 48px;
+line-height: 58px;
+
+color: #FFFFFF;
+
+
+
+/* welcome to collab. */
+
+position: absolute;
+width: 979px;
+height: 350px;
+left: 255px;
+top: 156px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: normal;
+font-size: 144px;
+line-height: 175px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* learn anywhere, anytime. */
+
+position: absolute;
+width: 430px;
+height: 44px;
+left: 505px;
+top: 512px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: normal;
+font-size: 36px;
+line-height: 44px;
+/* identical to box height */
+text-align: center;
+
+color: #000000;
+
+
+
+/* button */
+
+position: absolute;
+width: 292px;
+height: 78px;
+left: 574px;
+top: 590px;
+
+background: #000000;
+border-radius: 50px;
+
+
+/* start now */
+
+position: absolute;
+width: 430px;
+height: 41px;
+left: 508px;
+top: 608px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: bold;
+font-size: 34px;
+line-height: 41px;
+text-align: center;
+
+color: #FFFFFF;
+
+
+
+/* Frame 1 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: -43px;
+top: 998px;
+
+
+
+/* Frame 2 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 1258px;
+top: 2074px;
+
+
+
+/* Frame 3 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: 239px;
+top: 1714px;
+
+
+
+/* Vector 5 */
+
+position: absolute;
+width: 965.75px;
+height: 808.81px;
+left: -183px;
+top: 1415.19px;
+
+background: #EA658D;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+/* Vector 6 */
+
+position: absolute;
+width: 785.54px;
+height: 601.16px;
+left: -141px;
+top: 1490.84px;
+
+background: #FFD966;
+
+
+/* Frame 4 */
+
+position: absolute;
+width: 100px;
+height: 100px;
+left: -3px;
+top: 2042px;
+
+
+
+/* contact */
+
+position: absolute;
+width: 122px;
+height: 46px;
+left: 893px;
+top: 25px;
+
+font-family: Cabin;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 44px;
+
+color: #000000;
+
