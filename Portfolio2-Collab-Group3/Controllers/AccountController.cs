@@ -9,6 +9,10 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Portfolio2_Collab_Group3.Models;
+using System.Web;
+using Microsoft.Owin.Host.SystemWeb;
+using Microsoft.AspNet.Identity.Owin;
+using System.Net.Http;
 
 namespace Portfolio2_Collab_Group3.Controllers
 {
@@ -186,11 +190,13 @@ namespace Portfolio2_Collab_Group3.Controllers
             return this.RedirectToAction("LogOff", "Account");
         }
 
+        public ApplicationIdentity
         [AllowAnonymous]
         [HttpGet]
         public ActionResult LogOff()
         {
-            var ctx = Request.GetOwinContext();
+           
+            var ctx = Request.GetOwinContext().GetUserManager<ApplicationIdentity>();
             var authenticationManager = ctx.Authentication;
             authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login", "Account");
