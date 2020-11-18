@@ -99,12 +99,12 @@ body {
     font-weight: bold;
 }
 
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 /*Draggable div*/
 .draggable {
@@ -138,4 +138,14 @@ body {
     position: relative;
     top: 150px;
     left: 375px;
+}
+
+/*Close button for card div*/
+.closeCard{
+    cursor:default;
+    position:absolute;
+    right: 1px;
+    padding:0;
+    border:none;
+    background: #FFFFFF;
 }
