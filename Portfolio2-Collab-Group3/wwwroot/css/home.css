@@ -11,17 +11,17 @@
 .header-container {
     font-style: normal;
     text-align: center;
-    /*background: #1155CC url('../images/Group 1.svg');
+    background: #1155CC url('../images/Group 1.svg');
     background-repeat: no-repeat;
     background-position: right;
-    background-size: contain;*/
-    background-image: url('../images/computer.jpg');
+    background-size: contain;
+    /*background-image: url('../images/computer.jpg');
     background-size: cover;
     background-position: center;
     background-color: rgba(255,255,255,0.6);
     margin: 0;
     padding: 0;
-    z-index: -2;
+    z-index: -2;*/
 }
 
 .header-container h1 {
@@ -35,8 +35,14 @@
     padding: 0px 50px 50px 50px
 }
 
-#startnow{
+#startnow {
+    color: white;
+    background-color: black;
+    margin: 20px;
+}
 
+#startnow{
+    background-color: gray;
 }
 .about-us {
     margin-top: 20px;
