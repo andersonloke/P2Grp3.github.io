@@ -9,11 +9,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Portfolio2_Collab_Group3.Hubs;
+using Microsoft.Owin;
+using Owin;
 
 namespace Portfolio2_Collab_Group3
 {
-    public class Startup
+    public partial class Startup
     {
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,6 +31,10 @@ namespace Portfolio2_Collab_Group3
             services.AddSignalR();
         }
 
+        public void Configure(IAppBuilder app
+        {
+            ConfigureAuth(app)
+        })
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
