@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using FireSharp.Config;
@@ -12,7 +11,10 @@ using Portfolio2_Collab_Group3.Models;
 using System.Web;
 using Microsoft.Owin.Host.SystemWeb;
 using Microsoft.AspNet.Identity.Owin;
+using System.Net;
 using System.Net.Http;
+using System.Web.Http.Owin;
+
 
 namespace Portfolio2_Collab_Group3.Controllers
 {
@@ -67,29 +69,7 @@ namespace Portfolio2_Collab_Group3.Controllers
             return View();
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        public ActionResult Login(string returnUrl)
-        {
-            try
-            {
-                // Verification.
-                if (this.Request.IsAuthenticated)
-                {
-
-                    //  return this.RedirectToLocal(returnUrl);
-                }
-            }
-            catch (Exception ex)
-            {
-                // Info
-                Console.Write(ex);
-            }
-
-            // Info.
-            return this.View();
-        }
-
+        
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Login(Login model, string returnUrl)
@@ -190,7 +170,7 @@ namespace Portfolio2_Collab_Group3.Controllers
             return this.RedirectToAction("LogOff", "Account");
         }
 
-        public ApplicationIdentity
+        
         [AllowAnonymous]
         [HttpGet]
         public ActionResult LogOff()

@@ -18,7 +18,7 @@ namespace Portfolio2_Collab_Group3.Models
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
                 LogoutPath = new PathString("/Account/LogOff"),
-                ExpireTimeSpan = TimeSpan.FromMinutes(30.0)
+                ExpireTimeSpan = TimeSpan.FromMinutes(60.0)
 
             });
 
