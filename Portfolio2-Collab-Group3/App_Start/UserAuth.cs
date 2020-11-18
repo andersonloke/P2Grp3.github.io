@@ -9,7 +9,7 @@ using Owin;
 
 namespace Portfolio2_Collab_Group3.Models
 {
-    public class UserAuth
+    public partial class UserAuth
     {
         public void ConfigureAuth(IAppBuilder app)
         {

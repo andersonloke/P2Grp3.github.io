@@ -30,13 +30,20 @@ namespace Portfolio2_Collab_Group3
             services.AddControllersWithViews();
             services.AddSignalR();
         }
-
-        public void Configure(IAppBuilder app
+        [assembly: OwinStartupAttribute(typeof(Portfolio2_Collab_Group3.App_Start.UserAuth))]
+namespace TestingProject.App_Start
+    {
+        public partial class StartUp
         {
-            ConfigureAuth(app)
-        })
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+            public void Configuration(IAppBuilder app)
+            {
+                ConfigureAuth(app);
+            }
+        }
+    }
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
