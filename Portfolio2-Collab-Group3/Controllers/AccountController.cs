@@ -195,7 +195,7 @@ namespace Portfolio2_Collab_Group3.Controllers
         [HttpGet]
         public ActionResult LogOff()
         {
-           
+
             var ctx = Request.GetOwinContext().GetUserManager<ApplicationIdentity>();
             var authenticationManager = ctx.Authentication;
             authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
