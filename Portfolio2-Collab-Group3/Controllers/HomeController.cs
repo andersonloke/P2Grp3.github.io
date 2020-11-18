@@ -2,20 +2,29 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Web;
-using Firebase.Database;
-using Firebase.Database.Query;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Portfolio2_Collab_Group3.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using FirebaseAuth;
+using FireSharp;
+using FireSharp.Response;
+using FireSharp.Interfaces;
+using Newtonsoft.Json;
+using FireSharp.Serialization;
+using FireSharp.Config;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace Portfolio2_Collab_Group3.Controllers
 {
     public class HomeController : Controller
     {
-        private static string ApiKey = "AIzaSyAHvskhefCdxouzYqTqkSE2-SA8B2D4nyk";
         
+        private static string ApiKey = "AIzaSyAHvskhefCdxouzYqTqkSE2-SA8B2D4nyk";
+        private static string Bucket = "https://portfolio-2-6e9fc.firebaseio.com/";
         private readonly ILogger<HomeController> _logger;   
 
         public HomeController(ILogger<HomeController> logger)
@@ -28,42 +37,88 @@ namespace Portfolio2_Collab_Group3.Controllers
             return View();
         }
 
-        public async Task<IActionResult> About()
-        {
-            //Simulate test user data and login timestamp
-            var userID = "12345";
-            var currentLoginTime = DateTime.UtcNow.ToString("MM/dd/yyyy HH:mm:ss");
-
-            //Save non identifying data to Firebase
-            var currentUserLogin = new UserData() { TimestampUtc = currentLoginTime };
-            var firebaseClient = new FirebaseClient("https://portfolio-2-6e9fc.firebaseio.com/");
-            var result = await firebaseClient.Child("Users/" + userID + "/Logins").PostAsync(currentUserLogin);
-
-            //Retrieve data from Firebase
-            var dbLogins = await firebaseClient.Child("Users").Child(userID)
-                .Child("Logins").OnceAsync<UserData>();
-
-            var timestampList = new List<DateTime>();
-
-            //Convert JSON data to original datatype
-            foreach (var login in dbLogins)
-            {
-                timestampList.Add(Convert.ToDateTime(login.Object.TimestampUtc).ToLocalTime());
-            }
-            ViewBag.CurrentUser = userID;
-            ViewBag.Logins = timestampList.OrderByDescending(x => x);
-            return View();
-        }
-
-        public IActionResult Login()
+        public IActionResult About()
         {
             return View();
         }
+        
 
         public IActionResult SignUp()
         {
             return View();
         }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> SignUp(Signup model)
+        {
+            try
+            {
+                var auth = new FirebaseAuthProvider(new FirebaseConfig(ApiKey));
+
+                var x = await auth.CreateUserWithEmailAndPasswordAsync(model.Email, model.Password, model.UserName, true);
+                ModelState.AddModelError(string.Empty, "Please verify your email then login please.");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+        }
+
+        //GET: Account
+        [AllowAnonymous]
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        public IActionResult Login(string returnUrl)
+        {
+            try
+            {
+                //Verificatiom
+                if (this.Request.isAuthenticated)
+                {
+                    //return this.RedirectToLocal(returnUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+                //Info
+                Console.Write(ex);
+
+            }
+
+            //Info
+            return this.View();
+        }
+
+        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(Login model, string returnUrl)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var auth = new FirebaseAuthProvider(new FirebaseConfig(ApiKey));
+                    var x = await auth.SignInWithEmailAndPasswordAsync(model.Email, model.Password);
+                    string token = x.FirebaseToken;
+                    var user = x.User;
+                    if (token != "")
+                    {
+                        this.SignInUser(user.Email, token, false);
+                        return this.RedirectToLocal(returnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid email or password.");
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+        }
+
 
         public IActionResult Privacy()
         {

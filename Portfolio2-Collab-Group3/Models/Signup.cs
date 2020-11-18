@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Portfolio2_Collab_Group3.Models
 {
     public class Signup
     {
+        [Key]
+        public int iD { get; set; }
+
+        [Required]
+        [Display(Name ="UserName")]
+        public string UserName { get; set; }
+
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
@@ -17,11 +25,5 @@ namespace Portfolio2_Collab_Group3.Models
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "New Password")]
-        public String RePassword { get; set; }
-
     }
 }

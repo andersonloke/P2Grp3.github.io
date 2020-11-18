@@ -8,6 +8,8 @@ namespace Portfolio2_Collab_Group3.Models
 {
     public class Login
     {
+        [Key]
+        public int iD { get; set; }
         [Required]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]

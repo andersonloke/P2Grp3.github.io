@@ -12,9 +12,9 @@ using Portfolio2_Collab_Group3.Hubs;
 using Microsoft.Owin;
 using Owin;
 
-namespace Portfolio2_Collab_Group3
+namespace Portfolio2_Collab_Group3.App
 {
-    public partial class Startup
+    public class Startup
     {
 
         public Startup(IConfiguration configuration)
@@ -27,20 +27,20 @@ namespace Portfolio2_Collab_Group3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add a default in-memory implementation of distributed cache
+            services.AddDistributedMemoryCache();
+            // Add the session service
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+
             services.AddControllersWithViews();
             services.AddSignalR();
         }
-        [assembly: OwinStartupAttribute(typeof(Portfolio2_Collab_Group3.App_Start.UserAuth))]
-namespace TestingProject.App_Start
-    {
-        public partial class StartUp
-        {
-            public void Configuration(IAppBuilder app)
-            {
-                ConfigureAuth(app);
-            }
-        }
-    }
+
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
