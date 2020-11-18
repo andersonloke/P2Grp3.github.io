@@ -1,6 +1,7 @@
 ﻿"use strict";
 //Global variables
 var meetingCode;
+var idClicked;
 var connection = new signalR.HubConnectionBuilder().withUrl("/chathub").build();
 
 //Disable send button until connection is established
@@ -11,7 +12,7 @@ $(document).ready(function () {
     document.getElementById('ac-wrapper').style.display = "block";
 });
 
-//Submit button hides/clears away pop-up form
+//Submit button hides/clears away pop-up form, and add user into group based on the input of the user
 document.getElementById("formBtn").addEventListener("click", function (event) {
     meetingCode = document.getElementById("meetingCode").value;
     connection.invoke("AddToGroup", meetingCode).catch(function (err) { //add to a common group (unique code for the whiteboard)
@@ -28,6 +29,14 @@ connection.on("ReceiveMessage", function (user, message) {
     var card = document.createElement("div");
     card.className = "card col-3";
     card.id = id;
+    var closeButton = document.createElement("div");
+    closeButton.className = "card-header closeCard";
+    closeButton.textContent = "X";
+    //delete div when the 'x' is clicked
+    closeButton.addEventListener("click", function () { 
+        var element = document.getElementById(idClicked);
+        element.parentNode.removeChild(element);
+    });
     var cardBody = document.createElement("div");
     cardBody.className = "card-body";
     var cardTitle = document.createElement("h4");
@@ -37,6 +46,7 @@ connection.on("ReceiveMessage", function (user, message) {
     cardText.textContent = message;
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardText);
+    card.appendChild(closeButton);
     card.appendChild(cardBody);
     document.getElementById("messagesList").appendChild(card);
     dragElement(document.getElementById(card.id));
@@ -101,6 +111,7 @@ window.onclick = function (event) {
 
 //Function for draggable div
 function dragElement(elmnt) {
+    idClicked = elmnt.id;
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     elmnt.className += " draggable" //important for it to be dragged accurately
     elmnt.onmousedown = dragMouseDown;
