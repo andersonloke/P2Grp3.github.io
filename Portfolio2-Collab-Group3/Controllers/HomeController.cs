@@ -14,6 +14,8 @@ namespace Portfolio2_Collab_Group3.Controllers
 {
     public class HomeController : Controller
     {
+        private static string ApiKey = "AIzaSyAHvskhefCdxouzYqTqkSE2-SA8B2D4nyk";
+        
         private readonly ILogger<HomeController> _logger;   
 
         public HomeController(ILogger<HomeController> logger)
