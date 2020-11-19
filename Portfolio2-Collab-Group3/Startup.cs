@@ -39,6 +39,7 @@ namespace Portfolio2_Collab_Group3.App
 
             services.AddControllersWithViews();
             services.AddSignalR();
+            services.AddProgressiveWebApp();
         }
 
 
