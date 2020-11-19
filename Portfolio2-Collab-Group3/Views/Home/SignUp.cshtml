@@ -24,14 +24,27 @@
         }
     }
 
-    function confirmPassword() {
-        var p = document.getElementById("");
-        var c = document.getElementById("");
-        if (p == c) {
-            location.href = "SignUp.cshtml";
+    function showconfirmpassword() {
+        var x = document.getElementById("confirmpwd");
+        var eye = document.getElementById("confirmeye");
+        if (x.type === "password") {
+            x.type = "text";
+            eye.style.color = "#5c97ff";
+
         }
         else {
+            x.type = "password";
+            eye.style.color = "#495057";
 
+        }
+    }
+
+    function confirmPassword() {
+        var p = document.getElementById("password");
+        var c = document.getElementById("confirmpwd");
+        if (p == c){
+            document.getElementById("message").innerHTML = "*Passwords do not match."
+            return false;
         }
     }
 </script>
@@ -41,7 +54,7 @@
         <h1> making learning for everyone.</h1>
     </div>
     <div class="main-card col-md-12">
-        <form method="post" action="~/Home/SignUp">
+        <form method="post" action="~/Home/SignUp" onsubmit="return confirmPassword()">
             <div class="row header-container">
 
             </div>
@@ -52,25 +65,29 @@
                 </div>
 
                 <div class="form-group">
+                    <input class="form-control" type="text" name="userName" placeholder="Username" id="username" />
+                </div>
+
+                <div class="form-group">
                     <button type="button" id="passwordbutton" onclick="showpassword()"><i class="fa fa-eye" id="eye"></i></button>
 
                     <input class="form-control" type="password" name="txtPassword" placeholder="Password" id="password" required />
                 </div>
 
                 <div class="form-group">
-                    <button type="button" id="passwordbutton" onclick="showpassword()"><i class="fa fa-eye" id="eye"></i></button>
+                    <button type="button" id="confirmpwdbtn" onclick="showconfirmpassword()"><i class="fa fa-eye" id="confirmeye"></i></button>
 
-                    <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password" id="password" required />
+                    <input class="form-control" type="password" name="confirmPassword" placeholder="Confirm Password" id="confirmpwd" required />
                 </div>
 
                 <div style="margin-bottom: 10px">
-                    <span style="color: red;">@TempData["Message"]</span>
+                    <span style="color: red;" id="message">@TempData["Message"]</span>
                 </div>
 
                 <div class="form-space"></div>
 
                 <div class="form-group">
-                    <input type="submit" value="Sign Up" id="login" class="btn"  asp-action="Index" asp-controller="Home"/>
+                    <input type="submit" value="Sign Up" id="login" class="btn" asp-action="Index" asp-controller="Home" onclick="confirmPassword()"/>
                 </div>
 
                 <div class="form-group">

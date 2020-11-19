@@ -11,7 +11,7 @@
 .header-container {
     font-style: normal;
     text-align: center;
-    background: #1155CC url('../images/Group 1.svg');
+    background: #7EADFF url('../images/Group 1.svg');
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;
@@ -67,11 +67,11 @@
 .aspects {
     display: flex;
     justify-content: space-between;
-    overflow:auto;
+    overflow: auto;
     font-style: normal;
     text-align: center;
     padding: 50px;
-    background: #1155CC url('../images/Group 1.svg');
+    background: #7EADFF url('../images/Group 1.svg');
     background-repeat: no-repeat;
     background-position: right;
     background-size: contain;
@@ -115,6 +115,7 @@ img{
     margin-top: 20px;
     flex: 1;
     padding: 16px;
+    margin-right: 10px;
 }
 
 @media only screen and (max-width: 600px) {
