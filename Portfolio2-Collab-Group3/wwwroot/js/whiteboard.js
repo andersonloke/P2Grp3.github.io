@@ -169,5 +169,7 @@ function dragElement(elmnt) {
 }
 
 function onClickCreate() {
+    var topic = document.getElementById("topic");
+    var display = docum
 
 }
