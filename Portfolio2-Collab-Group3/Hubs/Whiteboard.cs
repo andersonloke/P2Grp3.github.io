@@ -8,10 +8,10 @@ namespace Portfolio2_Collab_Group3.Hubs
 {
     public class Whiteboard:Hub
     {
-        //public async Task SendMessage(string user, string message)
-        //{
-        //    await Clients.All.SendAsync("ReceiveMessage", user, message);
-        //}
+        public async Task SendDeleted(string meetingCode, string div)
+        {
+            await Clients.Group(meetingCode).SendAsync("ReceiveDeleted", div);
+        }
 
         public async Task SendPosition(string meetingCode,string div, int pos1, int pos2)
         {

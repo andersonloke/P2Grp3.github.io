@@ -2,24 +2,35 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-
-<div class="container">
+@*<div class="container">
     <div id="ac-wrapper">
         <div id="popup">
-            <center>
-                <div class="row">
-                    <div class="col-2">Enter a meeting code:</div>
-                    <div class="col-4"><input type="text" id="meetingCode" /></div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <input type="submit" id="formBtn" value="Submit"  />
+            <div class="row">
+                <h2 style="text-align: center;">Board.</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4>Create a Board:</h4>
+                    </div>
+                    <div class="row">
+                        <input type="text" id="meetingCode" />
+                        <input type="submit" id="formBtn" value="Submit" />
                     </div>
                 </div>
-            </center>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <h4>Join a Board:</h4>
+                    </div>
+                    <div class="row">
+                        <input type="text" id="meetingCode" />
+                        <input type="submit" id="formBtn" value="Submit" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</div>*@
 
 <div id="myModal" class="modal">
     <!-- Modal content -->
@@ -49,6 +60,10 @@
         <div class="col-6">
             <input type="button" id="createCard" value="Create Card" />
         </div>
+        <div>
+            <h2 class="CenterTop">The topic Name Goes Here!</h2>
+        </div>
+        <p class="TopRight">Meeting Code: </p>
     </div>
     <div class="row">
         <div class="col-12">
