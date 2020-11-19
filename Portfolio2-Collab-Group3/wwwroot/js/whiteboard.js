@@ -151,3 +151,7 @@ function dragElement(elmnt) {
         });
     }
 }
+
+function onClickCreate() {
+
+}

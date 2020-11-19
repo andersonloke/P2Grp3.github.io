@@ -1,10 +1,40 @@
-﻿<div>
-    <h1>Welcome to Whiteboard.</h1>
-    <div class="create">
+﻿@{
+    ViewData["Title"] = "Whiteboard Home Page";
+}
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<link rel="stylesheet" href="~/css/homepage.css" />
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<h1>Welcome To Whiteboard.</h1>
+<div class="main-container row">
+    <div class="create-card col-md-12">
+        <form method="post" action="~/Whiteboard/Index">
+            <fieldset class="createWB">
+                <h2 id="header-title">Create A New Whiteboard.</h2>
+                <input type="text" id="topic" placeholder="Enter Your Topic" />
+                <input type="submit" value="Create" id="submittopic" class="btn" />
+            </fieldset>
+
+        </form>
 
     </div>
-    <div class="join">
-
+    <div class="join-card col-md-12">
+        <form method="post" action="~/Whiteboard/Index">
+            <fieldset class="createWB">
+                <h2 id="header-title">Join An Existing Whiteboard.</h2>
+                <input type="text" id="code" placeholder="Enter Your Code" />
+                <input type="submit" value="Join" id="submitcode" class="btn" />
+            </fieldset>
+        </form>
     </div>
 </div>
+
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/whiteboard.js"></script>
 
