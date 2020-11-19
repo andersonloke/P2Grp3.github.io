@@ -12,6 +12,14 @@ $(document).ready(function () {
     document.getElementById('ac-wrapper').style.display = "block";
 });
 
+// function to generate UID
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
 //Submit button hides/clears away pop-up form, and add user into group based on the input of the user
 document.getElementById("formBtn").addEventListener("click", function (event) {
     meetingCode = document.getElementById("meetingCode").value;
@@ -34,8 +42,9 @@ connection.on("ReceiveMessage", function (user, message) {
     closeButton.textContent = "X";
     //delete div when the 'x' is clicked
     closeButton.addEventListener("click", function () { 
-        var element = document.getElementById(idClicked);
-        element.parentNode.removeChild(element);
+        connection.invoke("SendDeleted", meetingCode, idClicked).catch(function (err) {
+            return console.error(err.toString());
+        });
     });
     var cardBody = document.createElement("div");
     cardBody.className = "card-body";
@@ -50,6 +59,13 @@ connection.on("ReceiveMessage", function (user, message) {
     card.appendChild(cardBody);
     document.getElementById("messagesList").appendChild(card);
     dragElement(document.getElementById(card.id));
+});
+
+//Delete div on all screens
+connection.on("ReceiveDeleted", function (divID) {
+    console.log(divID);
+    var element = document.getElementById(divID);
+    element.parentNode.removeChild(element);
 });
 
 //Update position of moved div
